@@ -6,11 +6,15 @@ library(survminer)
 library(ggthemes)
 
 #############################################################################
-# read persistence diagrams (.txt files)
+# This code runs analysis for lung cancer case study
+# Sections 4.1.1, 4.1.2, and 4.1.3
 #############################################################################
 
+#############################################################################
+# read persistence diagrams (.txt files)
+#############################################################################
 filename = list.files(path="./TopologicalTumorShape/data/lung/PersistenceDiagram/"
-											,pattern="/.txt$",full.names = T)
+											,pattern=".txt$",full.names = T)
 
 # recover slide id
 pd.total = NULL
@@ -35,18 +39,9 @@ slideid=unique(pd.total$slide)
 #############################################################################
 # make persistence functions
 #############################################################################
-
-# number of topological features in each slide
-pd0.int = pd0.total %>%
-	group_by(slide) %>%
-	summarise(nint0=n())
-pd1.int = pd1.total %>%
-	group_by(slide) %>%
-	summarise(nint1=n())
-
 # sigma of Gaussian smoothing function
-sigma0 = mean(apply(pd0.total[,2:3],2,sd))*median(pd0.int$nint0)^(-1/6)
-sigma1 = mean(apply(pd1.total[,2:3],2,sd))*median(pd1.int$nint1)^(-1/6)
+sigma0=2
+sigma1=0.9
 
 # number of pixels in persistence function
 pixnum0 = minmax0[2]-minmax0[1]
@@ -57,10 +52,6 @@ mdw=function(pd) {
 	mdw=apply(cbind(pd$death-pd$birth,abs(pd$birth),abs(pd$death)),1,max)
 	return(mdw)
 }
-
-##############################################################
-# save persistence function
-##############################################################
 
 # persistence functions with the maximum distance weight
 pfmdw0 = as.data.frame(matrix(NA,length(filename),pixnum0*(pixnum0+1)/2))
@@ -315,12 +306,12 @@ for (s in 1:selectindex1){
 }
 inifor=paste0(inifor,paste0("+cluster(patient_id)"))
 
-## model fitting
-model.fcoxph_var = coxph(as.formula(inifor),data=comdf_var)
-finalresult=summary(model.fcoxph_var)
-
 ## initial value for chi-sq test
 initial.value=c(model.coxph$coef,rep(0,selectindex0+selectindex1 ) )
+
+## model fitting
+model.fcoxph_var = coxph(as.formula(inifor),data=comdf_var,ini=initial.value)
+finalresult=summary(model.fcoxph_var)
 
 ## coefficient for full model
 testscore=model.fcoxph_var$score
@@ -508,7 +499,7 @@ for (ii in 1:nrow(X0)){
 	model.fcoxph = coxph(as.formula(inifor),data=comdf.train)
 	
 	# test set 
-	## substract mean of training data
+	## subtract mean of training data
 	scaleX0.test = X0.test-colMeans(X0.train)
 	scaleX1.test = X1.test-colMeans(X1.train)
 	## estimated eigenscore of test data
@@ -549,7 +540,7 @@ survdiff(Surv(survival_time_new, dead) ~ group, data = risk.mean.fcoxph)
 
 ## KM plot
 ggsurvplot(survfit(Surv(survival_time_new, dead) ~ group, data = risk.mean.fcoxph), 
-					 conf.int = TRUE, pval = 0.0000003,
+					 conf.int = TRUE, pval = 0.000000008,
 					 legend.labs = c("High", "Low"),legend.title="Predicted risk")
 
 # CoxPH
@@ -566,7 +557,7 @@ survdiff(Surv(survival_time_new, dead) ~ group, data = risk.mean.coxph)
 
 ## KM plot
 ggsurvplot(survfit(Surv(survival_time_new, dead) ~ group, data = risk.mean.coxph), 
-					 conf.int = TRUE,pval = 0.00005,
+					 conf.int = TRUE,pval = 0.00001,
 					 legend.labs = c("High", "Low"),legend.title="Predicted risk")
 
 ##################################################################
