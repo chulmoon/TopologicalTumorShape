@@ -11,10 +11,10 @@ Also, the topological shape features found to be positively associated with surv
 * For the TCIA datasets, the imaging data are available at https://github.com/lorinanthony/SECT. The users need to download image data from the public repository.
 
 2. Distance transform:
-The size of distance transform data is too large (about 1.8 GB in total), so we only include three examples for the NLST and the TCIA datasets, respectively, in the public repository  https://github.com/chulmoon/TopologicalTumorShape. However, the same distance transform images could be computed given binary or trenary images. Due to the size issue, the simulated pixel-rearranged images are not provided.
+The size of distance transform data is too large (about 1.8 GB in total), so we only include three examples for the NLST and the TCIA datasets, respectively. However, the same distance transform images could be computed given binary or trenary images. Due to the size issue, the simulated pixel-rearranged images are not provided.
 
 3. Persistence diagrams:
-Persistence diagram data files are available at https://github.com/chulmoon/TopologicalTumorShape. Persistence diagrams computed by [GUDHI](http://gudhi.gforge.inria.fr/) are given as txt files and given ./data/lung/PersistenceDiagram/ for the NLST data and ./data/brain/PersistenceDiagram/ for the TCIA data in the repository. The persistence diagram txt files have three columns of dimension, birth, and death.
+Persistence diagram data files are provided in this repository. Persistence diagrams computed by [GUDHI](http://gudhi.gforge.inria.fr/) are given as txt files and given ./data/lung/PersistenceDiagram/ for the NLST data and ./data/brain/PersistenceDiagram/ for the TCIA data in the repository. The persistence diagram txt files have three columns of dimension, birth, and death.
 
 4. Clinical information:
 Clinical information data files of the NLST and TCIA datasets are provided in `clinical_info_lung.Rdata` and `clinical_info_brain.Rdata`, respectively. 
