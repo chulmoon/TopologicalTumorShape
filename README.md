@@ -40,7 +40,7 @@ Also, the topological shape features found to be positively associated with surv
 * `brain_sedt2_persistent_homology.ipynb`: Generate binary tumor images, SEDT-3 transform, and compute persistent homology for the TCIA brain tumor images
 * `brain_fcoxph_functions.R`: Functions of the Cox and the functional Cox proportional-hazards models for the TCIA brain tumor images
 * `brain_fcoxph_main.R`: Fit the Cox and the functional Cox proportional-hazards models and draw summary plots for the TCIA brain tumor images
-* `brain_fcoxph_sect.R`: Fit the functional Cox proportional-hazards model and draw summary plots for the TCIA brain tumor images using the Smooth Euler Characteristic Transform (SECT) [Crawford et al.](https://doi.org/10.1080/01621459.2019.1671198)
+* `brain_fcoxph_sect.R`: Fit the functional Cox proportional-hazards model and draw summary plots for the TCIA brain tumor images using the Smooth Euler Characteristic Transform (SECT) of [Crawford et al. (2019)](https://doi.org/10.1080/01621459.2019.1671198)
 * `brain_cv_mdw_function.R`: Functions for finding smoothing paramters for the maximum distance weight using cross validations
 * `brain_cv_linear_function.R`: Functions for finding smoothing paramters for the linear weight using cross validations
 * `brain_cv_pwgk_function.R`: Functions for finding smoothing paramters for the persistence weighted Gaussian kernel weight using cross validations
