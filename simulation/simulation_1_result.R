@@ -588,8 +588,8 @@ for (tt in 1:iter){
 }
 
 mean(validity.pval)
-mean(coxph.pval)
-mean(fcoxph.pval)
+mean(wald.coxph.pval)
+mean(wald.fcoxph.pval)
 
 minmax0[2]=ceiling(minmax0[2])
 minmax0[1]=floor(minmax0[1])
