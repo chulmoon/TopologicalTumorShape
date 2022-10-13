@@ -1,4 +1,9 @@
+library(spatstat)
 library(tidyverse)
+library(tools)
+library(survival)
+library(survminer)
+library(ggthemes)
 
 #############################################################################
 # current file location

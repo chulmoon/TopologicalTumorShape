@@ -1,5 +1,6 @@
 library(snow)
 library(parallel)
+library(tidyverse)
 
 niter = 100 
 permres = rep(NA,niter)
