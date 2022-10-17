@@ -40,3 +40,17 @@ length(pvals[pvals==pvals[2]]) # cases when the p-values of log rank tests of FC
                                # is equal to those of CoxPH  
 sum(count)/(230*niter)         # proportion of all models 
                                # that did not select topological features
+
+pvals_df=data.frame(pvals)
+pvals_df$CoxPH=1-(pvals==pvals[2])*1
+pvals_df$CoxPH=pvals_df$CoxPH+(pvals!=pvals[2] & pvals>(pvals[2]+0.0004))
+pvals_df = pvals_df %>% mutate(
+  cases = case_when(
+    CoxPH ==0 ~ "0",
+    CoxPH ==1 ~ "<0.0004",
+    CoxPH == 2 ~ ">0.0004"))
+pvals_df$cases=factor(pvals_df$cases,levels=c("0","<0.0004",">0.0004"))
+
+ggplot(pvals_df)+
+  geom_bar(aes(cases,fill=cases)) +
+  labs(x="Difference of p-values",y="Frequency",fill="Difference")
