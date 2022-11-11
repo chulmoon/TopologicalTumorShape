@@ -1,7 +1,6 @@
 # Persistent Homology Topological Features for Medical Images
 
-Tumor shape is a key factor that affects tumor growth and metastasis. In [Moon et al.](https://arxiv.org/abs/2012.12102), 
-we propose a topological feature computed by persistent homology to characterize tumor progression from digital pathology and radiology images and examines its effect on the time-to-event data.
+Tumor shape is a key factor that affects tumor growth and metastasis. We propose a topological feature computed by persistent homology to characterize tumor progression from digital pathology and radiology images and examines its effect on the time-to-event data.
 Two case studies are conducted using consecutive from lung cancer pathology imaging data from the National Lung Screening Trial (NLST) and brain tumor radiology imaging data from the The Cancer Imaging Archive (TCIA). The results of both studies show that the topological features predict survival prognosis after adjusting clinical variables, and the predicted high-risk groups have worse survival outcomes than the low-risk groups.
 Also, the topological shape features found to be positively associated with survival hazards are irregular and heterogeneous shape patterns, which are known to be related to tumor progression. Persistence homology over the cubical complex is computed by [GUDHI](http://gudhi.gforge.inria.fr/). The persistence diagram txt files have three columns of dimension, birth, and death.
     
@@ -46,7 +45,3 @@ Also, the topological shape features found to be positively associated with surv
 * `brain_cv_pwgk_function.R`: Functions for finding smoothing paramters for the persistence weighted Gaussian kernel weight using cross validations
 * `brain_cv_main.R`: Find smoothing parameters under the three weights
 * `clinical_data_brain.csv`: clinical data for for the TCIA brain tumor patients
-
-
-# Relevant Citations
-
